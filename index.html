@@ -15,23 +15,36 @@
   </style>
 </head>
 <body>
-
-  Day
-  DD
-
-  Month
-  MM
-
-  Year
-  YYYY
-
-  -- years
-  -- months
-  -- days
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+  <main class="main">
+    <form action="" class="form">
+      <div class="form__group">
+        <label for="day-input" class="form__label">Day</label>
+        <input type="text" id="day-input" class="form__input" placeholder="DD" maxlength="2" required>
+      </div>
+      <div class="form__group">
+        <label for="day-input" class="form__label">Day</label>
+        <input type="text" id="day-input" class="form__input" placeholder="DD" maxlength="2" required>
+      </div>
+      <div class="form__group">
+        <label for="year-input" class="form__label">Year</label>
+        <input type="text" id="year-input" class="form__input" placeholder="YYYY" maxlength="4" required>
+      </div>
+      <hr class="form__divider">
+      <button class="form__btn" aria-label="Calculate age">
+        <svg class="form__btn-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="46" height="44" viewBox="0 0 46 44"><g fill="none" stroke="#FFF" stroke-width="2"><path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44"/></g></svg>
+      </button>
+    </form>
+    <section class="date">
+      <h1 class="date__years"><span class="date__years-num">--</span> years</h1>
+      <h1 class="date__months"><span class="date__months-num">--</span> months</h1>
+      <h1 class="date__days"><span class="date__days-num">--</span> days</h1>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" class="footer__link" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="https://github.com/Outstandinggirl13" class="footer__link">Outstandinggirl13</a>.
+    </p>
+  </footer>
 </body>
 </html>
