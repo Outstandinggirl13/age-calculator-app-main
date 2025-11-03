@@ -192,8 +192,13 @@ body {
     z-index: 0;
 }
 
+.form__btn-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
 .form__btn {
-    margin: 28px auto 0;
+    margin: 28px 0 0;
     display: block;
     height: var(--btn-mobile);
 }
@@ -225,6 +230,21 @@ body {
     color: var(--purple-500);
 }
 
+.footer__attribution { 
+    font-size: 1rem;
+    text-align: center; 
+    padding: 1rem;
+    color: var(--gray-500);
+}
+
+.footer__link { 
+    color: hsl(228, 45%, 44%); 
+}
+
+.footer__link:hover {
+    text-decoration: underline;
+}
+
 @media (min-width: 1024px) {
     .main {
         display: grid;
@@ -236,5 +256,62 @@ body {
     .main__content {
         padding: 56px;
         border-radius: 24px 24px 200px 24px;
+        min-width: 840px;
+    }
+
+    .form {
+        margin-bottom: 0px;
+    }
+    
+    .form__group {
+        gap: 32px;
+    }
+    
+    .form__item {
+        gap: 8px;
+        max-width: 160px;
+    }
+    
+    .form__label {
+        font-size: 14px;
+        letter-spacing: 0.28em;
+    }
+    
+    .form__input {
+        padding: 12px 24px;
+        font-size: 32px;
+    }
+    
+    .form__divider {
+        background-color: var(--grey-100);
+        height: 1px;
+        width: 100%;
+        position: absolute;
+        bottom: calc((var(--btn-desktop) / 2));
+        z-index: 0;
+    }
+
+    .form__btn-wrapper {
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .form__btn {
+        margin: 0;
+        height: var(--btn-desktop);
+    }
+    
+    .form__btn-icon {
+        padding: 26px 25px;
+        width: var(--btn-desktop);
+        height: var(--btn-desktop);
+    }
+    
+    .date__years,
+    .date__months,
+    .date__days {
+        font-size: 104px;
+        line-height: 114px;
+        letter-spacing: -0.03em;
     }
 }
