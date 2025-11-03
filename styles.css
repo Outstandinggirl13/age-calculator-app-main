@@ -223,6 +223,11 @@ body {
     transition: background-color 0.3s ease;
 }
 
+.form__btn-icon:hover,
+.form__btn-icon:active {
+    background-color: var(--black);
+}
+
 .date__years,
 .date__months,
 .date__days {
@@ -240,9 +245,9 @@ body {
 }
 
 .footer__attribution { 
-    font-size: 1rem;
+    font-size: 0.875rem;
     text-align: center; 
-    padding: 1rem;
+    padding: 0.875rem;
     color: var(--gray-500);
 }
 
@@ -341,16 +346,12 @@ body {
         line-height: 7.125rem;
         letter-spacing: -0.03em;
     }
+}
 
+@media (min-height: 720px) and (min-width: 1024px) {
     .footer__attribution { 
         position: absolute;
         bottom: 0;
         width: 100%;
-    }
-}
-
-@media (max-height: 760px) {
-    .footer__attribution { 
-        position: static;
     }
 }
