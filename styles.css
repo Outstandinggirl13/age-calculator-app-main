@@ -1,0 +1,124 @@
+/* ===========================
+   FONTS
+   =========================== */
+
+/* poppins-regular - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    src: url('assets/fonts/Poppins-Regular.ttf') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+  /* poppins-italic - latin */
+  @font-face {
+    font-display: swap;
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 400;
+    src: url('assets/fonts/Poppins-Italic.ttf') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+  /* poppins-700 - latin */
+  @font-face {
+    font-display: swap;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    src: url('assets/fonts/Poppins-Bold.ttf') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+  /* poppins-700italic - latin */
+  @font-face {
+    font-display: swap;
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 700;
+    src: url('assets/fonts/Poppins-BoldItalic.ttf') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+  /* poppins-800 - latin */
+  @font-face {
+    font-display: swap;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 800;
+    src: url('assets/fonts/Poppins-ExtraBold.ttf') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+  /* poppins-800italic - latin */
+  @font-face {
+    font-display: swap;
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 800;
+    src: url('assets/fonts/Poppins-ExtraBoldItalic.ttf') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+/* ===========================
+   RESET
+   =========================== */
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+      
+img,
+picture,
+video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+      
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border-color: transparent;
+}
+      
+a {
+    text-decoration: none;
+    color: inherit;
+}
+      
+ul,
+ol {
+    list-style-type: none;
+}
+      
+/* ===========================
+       CSS VARIABLES
+   =========================== */
+      
+:root {
+      
+    /* Neutral */
+
+    --white: hsl(0, 100%, 100%);
+    --grey-100: hsl(0, 0%, 94%);
+    --grey-200: hsl(0, 0%, 86%);
+    --grey-500: hsl(0, 1%, 44%);
+    --black: hsl(0, 0%, 0%);
+    
+    /* Typography */
+
+    --font-base: 'Poppins', sans-serif;
+}
+   
+/* ===========================
+      BASE
+   =========================== */
+   
+body {
+    font-family: var(--font-base);
+    color: white;
+    font-size: 1rem;
+}
+
+/* ===========================
+   LAYOUT & ELEMENTS
+   =========================== */
