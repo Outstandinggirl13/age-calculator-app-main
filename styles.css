@@ -186,6 +186,26 @@ body {
     font-weight: 700;
 }
 
+.form__input:focus {
+    border: 1px solid var(--purple-500);
+    background-color: none;
+    outline: none;
+}
+
+.form__input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+    -webkit-text-fill-color: black !important;
+    transition: background-color 9999s ease-in-out 0s; /* prevent flash */
+  }
+
+.form__required-err,
+.form__valid-err {
+    color: var(--red-400);
+    font-style: italic;
+    font-size: 14px;
+    display: none;
+}
+
 .form__input::placeholder {
     color: var(--grey-500);
 }
