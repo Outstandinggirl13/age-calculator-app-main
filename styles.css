@@ -248,11 +248,21 @@ body {
     background-color: var(--black);
 }
 
+.date__group {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.125rem;
+    gap: clamp(0.125rem, -0.3806rem + 2.1572vw, 1rem);
+}
+
 .date__years,
 .date__months,
-.date__days {
-    font-size: 3.125rem;
-    line-height: 3.5rem;
+.date__days,
+.date__years-num,
+.date__months-num,
+.date__days-num {
+    font-size: 44px;
+    line-height: 50px;
     letter-spacing: -0.02em;
     font-weight: 800;
     font-style: italic;
@@ -301,7 +311,10 @@ body {
 
     .date__years,
     .date__months,
-    .date__days {
+    .date__days, 
+    .date__years-num,
+    .date__months-num,
+    .date__days-num {
     font-size: 3.5rem;
     font-size: clamp(3.5rem, 2.4437rem + 4.507vw, 6.5rem);
     line-height: 3.75rem;

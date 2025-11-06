@@ -17,6 +17,12 @@ const errFutureDay = document.querySelector('.form__future-day-err');
 const errFutureMonth = document.querySelector('.form__future-month-err');
 const errFutureYear = document.querySelector('.form__future-year-err');
 
+const dateGroupElement = document.querySelectorAll('.date__group');
+const dateYearsElement = document.querySelector('.date__years');
+const dateMonthsElement = document.querySelector('.date__months');
+const dateDaysElement = document.querySelector('.date__days');
+
+
 inputs.forEach(input => { // switch to empty field
     input.addEventListener('keydown', e => {
       if (e.key === 'Enter') {
@@ -191,8 +197,30 @@ form.addEventListener('submit', e => {
     monthsNum.textContent = ageMonths;
     daysNum.textContent = ageDays;
 
+    if (ageYears == 1) {
+      dateYearsElement.textContent = "year";
+    } else {
+      dateYearsElement.textContent = "years";
+    }
+
+    if (ageMonths == 1) {
+      dateMonthsElement.textContent = "month";
+    } else {
+      dateMonthsElement.textContent = "months";
+    }
+
+    if (ageMonths == 1) {
+      dateDaysElement.textContent = "day";
+    } else {
+      dateDaysElement.textContent = "days";
+    }
+
     if(hasValidError) {
       toDefaultValues();
+    } else {
+      dateGroupElement.forEach(group => {
+        group.style.gap = '0.875rem';
+      });
     }
 
     console.log(`Day: ${day}, Month: ${month}, Year: ${year}`);
