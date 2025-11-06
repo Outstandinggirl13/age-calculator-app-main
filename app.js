@@ -3,7 +3,6 @@ const inputs = form.querySelectorAll('.form__input');
 const labels = form.querySelectorAll('.form__label');
 
 const errorsRequired = document.querySelectorAll('.form__required-err');
-const errorsValid = document.querySelectorAll('.form__required-err');
 
 const yearsNum = document.querySelector('.date__years-num');
 const monthsNum = document.querySelector('.date__months-num');
@@ -51,9 +50,7 @@ function toDefaultValues() {
 }
 
 function clearErrors() {
-  errors.forEach((err, i) => {
-    errors[i].style.display = 'none';
-  })
+  errors.forEach(err => err.style.display = 'none');
 }
 
 form.addEventListener('submit', e => {
@@ -209,7 +206,7 @@ form.addEventListener('submit', e => {
       dateMonthsElement.textContent = "months";
     }
 
-    if (ageMonths == 1) {
+    if (ageDays == 1) {
       dateDaysElement.textContent = "day";
     } else {
       dateDaysElement.textContent = "days";
