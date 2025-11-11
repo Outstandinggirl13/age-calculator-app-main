@@ -3,6 +3,7 @@ const inputs = form.querySelectorAll('.form__input');
 const labels = form.querySelectorAll('.form__label');
 
 const errorsRequired = document.querySelectorAll('.form__required-err');
+const errorsValid = document.querySelectorAll('.form__valid-err');
 
 const yearsNum = document.querySelector('.date__years-num');
 const monthsNum = document.querySelector('.date__months-num');
@@ -61,7 +62,7 @@ form.addEventListener('submit', e => {
     inputs.forEach((input, index) => { // validate input fields
       if (input.value.trim() === '') {
         hasRequiredError = true;
-        clearErrors();
+        //clearErrors();
         errorsRequired[index].style.display = 'block';
         input.style.borderColor = 'var(--red-400)';
         labels[index].style.color = 'var(--red-400)';
@@ -90,6 +91,27 @@ form.addEventListener('submit', e => {
     const daysInMonths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
     let hasValidError = false;
+
+    inputs.forEach((input, index) => { // validate input fields 
+      if (isNaN(Number(input.value))) {
+        console.log("The input is NaN");
+        hasValidError = true;
+        //clearErrors();
+        console.log(errorsValid[index]);
+        errorsValid[index].style.display = 'block';
+        input.style.borderColor = 'var(--red-400)';
+        labels[index].style.color = 'var(--red-400)';
+      } else {
+        errorsValid[index].style.display = 'none';
+        input.style.borderColor = 'var(--grey-500)';
+        labels[index].style.color = 'var(--grey-500)';
+      }
+    }); 
+
+    
+    if (hasValidError) {
+      return;
+    }
 
     if (currentDate.getFullYear() < year) { // prevent invalid year input
       console.log('Your birth year has not yet occurred this year');
@@ -221,5 +243,5 @@ form.addEventListener('submit', e => {
     }
 
     console.log(`Day: ${day}, Month: ${month}, Year: ${year}`);
+    
 });
-

@@ -199,7 +199,8 @@ body {
   }
 
 .form__required-err,
-.form__valid-err {
+.form__valid-err,
+.form__time-err {
     color: var(--red-400);
     font-style: italic;
     font-size: 14px;
