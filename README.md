@@ -37,7 +37,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [Age Calculator App – Vanilla JS & Responsive Design](https://www.frontendmentor.io/solutions/age-calculator-app-vanilla-js-and-responsive-design-b3_xYz7NCl)
 - Live Site URL: [GitHub Pages](https://outstandinggirl13.github.io/age-calculator-app-main/)
 
 ## My process
