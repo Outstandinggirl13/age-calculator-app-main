@@ -4,12 +4,12 @@ const labels = form.querySelectorAll('.form__label');
 
 const errorsRequired = document.querySelectorAll('.form__required-err');
 const errorsValid = document.querySelectorAll('.form__valid-err');
+const errorsTime = document.querySelectorAll('.form__time-err');
 
 const yearsNum = document.querySelector('.date__years-num');
 const monthsNum = document.querySelector('.date__months-num');
 const daysNum = document.querySelector('.date__days-num');
 
-const errors = document.querySelectorAll('.form__valid-err');
 const errValidDays = document.querySelector('.form__valid-day-err');
 const errValidMonths = document.querySelector('.form__valid-month-err');
 const errValidYears = document.querySelector('.form__valid-year-err');
@@ -22,6 +22,43 @@ const dateYearsElement = document.querySelector('.date__years');
 const dateMonthsElement = document.querySelector('.date__months');
 const dateDaysElement = document.querySelector('.date__days');
 
+/* ===========================
+       HELPER FUNCTIONS
+   =========================== */
+
+function isLeapYear(year) {
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+}
+
+function toDefaultValues() {
+  yearsNum.textContent = "- -";
+  monthsNum.textContent = "- -";
+  daysNum.textContent = "- -";
+}
+
+function showError(errElement, input, label, color = 'var(--red-400)') {
+  errElement.style.display = 'block';
+  input.style.borderColor = color;
+  label.style.color = color;
+}
+
+function hideError(errElement, input, label, color = 'var(--grey-500)') {
+  errElement.style.display = 'none';
+  input.style.borderColor = color;
+  label.style.color = color;
+}
+
+function hideBlock(errElement) {
+  errElement.style.display = 'none';
+}
+
+function clearErrors(errors) { 
+  errors.forEach(err => err.style.display = 'none'); 
+}
+
+/* ===========================
+       EVENT LISTENERS
+   =========================== */
 
 inputs.forEach(input => { // switch to empty field
     input.addEventListener('keydown', e => {
@@ -40,41 +77,28 @@ inputs.forEach(input => { // switch to empty field
     });
 });
 
-function isLeapYear(year) {
-  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-}
-
-function toDefaultValues() {
-  yearsNum.textContent = "--";
-  monthsNum.textContent = "--";
-  daysNum.textContent = "--";
-}
-
-function clearErrors() {
-  errors.forEach(err => err.style.display = 'none');
-}
 
 form.addEventListener('submit', e => {
 
     e.preventDefault();
+    clearErrors(errorsValid);
+    clearErrors(errorsTime);
+
     let hasRequiredError = false;
 
     inputs.forEach((input, index) => { // validate input fields
       if (input.value.trim() === '') {
+
         hasRequiredError = true;
-        //clearErrors();
-        errorsRequired[index].style.display = 'block';
-        input.style.borderColor = 'var(--red-400)';
-        labels[index].style.color = 'var(--red-400)';
+        showError(errorsRequired[index], input, labels[index]);
       } else {
-        errorsRequired[index].style.display = 'none';
-        input.style.borderColor = 'var(--grey-500)';
-        labels[index].style.color = 'var(--grey-500)';
+        hideError(errorsRequired[index], input, labels[index]);
       }
     });
 
     if (hasRequiredError) {
-      return;
+      toDefaultValues();
+      return; // <-- exit the submit handler early
     }
   
     // extract user inputs
@@ -83,7 +107,6 @@ form.addEventListener('submit', e => {
     const year = document.querySelector('#year-input').value.trim();
   
     const birthDate = new Date(year, month - 1, day);
-    console.log(birthDate);
     const currentDate = new Date();
     const birthThisYear = new Date(currentDate.getFullYear(), month - 1, day);
 
@@ -93,101 +116,75 @@ form.addEventListener('submit', e => {
     let hasValidError = false;
 
     inputs.forEach((input, index) => { // validate input fields 
-      if (isNaN(Number(input.value))) {
-        console.log("The input is NaN");
+      if (!/^\d+$/.test(input.value.trim())) {
         hasValidError = true;
-        //clearErrors();
-        console.log(errorsValid[index]);
-        errorsValid[index].style.display = 'block';
-        input.style.borderColor = 'var(--red-400)';
-        labels[index].style.color = 'var(--red-400)';
+        showError(errorsValid[index], input, labels[index]);
       } else {
-        errorsValid[index].style.display = 'none';
-        input.style.borderColor = 'var(--grey-500)';
-        labels[index].style.color = 'var(--grey-500)';
+        hideError(errorsValid[index], input, labels[index]);
       }
     }); 
-
     
     if (hasValidError) {
-      return;
+      toDefaultValues();
+      return; // <-- exit the submit handler early
     }
 
     if (currentDate.getFullYear() < year) { // prevent invalid year input
-      console.log('Your birth year has not yet occurred this year');
-      errFutureYear.style.display = 'block';
-      inputs[2].style.borderColor = 'var(--red-400)';
-      labels[2].style.color = 'var(--red-400)';
       hasValidError = true;
+      showError(errFutureYear, inputs[2], labels[2]);
     } else {
-      errFutureYear.style.display = 'none';
+      hideBlock(errFutureYear);
     }
 
     if (currentDate.getMonth() < month-1 && currentDate.getFullYear() == year) { // prevent invalid month input
-      console.log('Your birth month has not yet occurred this year');
-      errFutureMonth.style.display = 'block';
-      inputs[1].style.borderColor = 'var(--red-400)';
-      labels[1].style.color = 'var(--red-400)';
       hasValidError = true;
+      showError(errFutureMonth, inputs[1], labels[1]);
     } else {
-      errFutureMonth.style.display = 'none';
+      hideBlock(errFutureMonth);
     }
 
     if (currentDate.getDate() < day && currentDate.getMonth() == month-1 && currentDate.getFullYear() == year) { // prevent invalid day input
-      console.log('Your birth day has not yet occurred this year');
-      errFutureDay.style.display = 'block';
-      inputs[0].style.borderColor = 'var(--red-400)';
-      labels[0].style.color = 'var(--red-400)';
       hasValidError = true;
+      showError(errFutureDay, inputs[0], labels[0]);
     } else {
-      errFutureDay.style.display = 'none';
+      hideBlock(errFutureDay);
     }
 
     if (year < 100) { // prevent two digit year input
-      console.log("Invalid birth year!");
-      errValidYears.style.display = 'block';
-      inputs[2].style.borderColor = 'var(--red-400)';
-      labels[2].style.color = 'var(--red-400)';
-      errFutureYear.style.display = 'none';
       hasValidError = true;
+      showError(errValidYears, inputs[2], labels[2]);
     } else {
-      errValidYears.style.display = 'none';
+      hideBlock(errValidYears);
     }
 
     if (month > 12 || month < 1) { // prevent invalid month input
-      console.log("Invalid birth month!");
-      errValidMonths.style.display = 'block';
-      inputs[1].style.borderColor = 'var(--red-400)';
-      labels[1].style.color = 'var(--red-400)';
-      errFutureMonth.style.display = 'none';
       hasValidError = true;
+      showError(errValidMonths, inputs[1], labels[1]);
+      hideBlock(errFutureMonth);
     } else {
-      errValidMonths.style.display = 'none';
+      hideBlock(errValidMonths);
     }
 
     if (day > (daysInMonths[month - 1] || 31) && !isLeapYear(year) || day < 1) { // prevent invalid day input
-      console.log(`Invalid birth day! Month ${month} has only ${daysInMonths[month - 1]} days.`);
-      errValidDays.style.display = 'block';
-      inputs[0].style.borderColor = 'var(--red-400)';
-      labels[0].style.color = 'var(--red-400)';
-      errFutureDay.style.display = 'none';
       hasValidError = true;
+      showError(errValidDays, inputs[0], labels[0]);
+      hideBlock(errFutureDay);
     } else if (month === 2 && day > 29 && isLeapYear(year)) { // prevent invalid day input for leap year
-      console.log(`Invalid birth day! ${year} is a leap year, so February has only 29 days.`);
-      errValidDays.style.display = 'block';
-      inputs[0].style.borderColor = 'var(--red-400)';
-      labels[0].style.color = 'var(--red-400)';
-      errFutureDay.style.display = 'none';
       hasValidError = true;
+      showError(errValidDays, inputs[0], labels[0]);
+      hideBlock(errFutureDay);
     } else {
-      errValidDays.style.display = 'none';
+      hideBlock(errValidDays);
     }
 
-    
+    if (hasValidError) {
+      toDefaultValues();
+      return; // <-- exit the submit handler early
+    }
+
     if (currentDate < birthThisYear) {  // birthday not yet occurred this year
         ageYears = currentDate.getFullYear() - birthDate.getFullYear() - 1;
         ageMonths = 12 + (currentDate.getMonth() - birthDate.getMonth()) - 1;
-        console.log('Birthday not yet occurred this year');
     } else { // birthday occurred this year
         ageYears = currentDate.getFullYear() - birthDate.getFullYear();
         if (currentDate.getDate() < birthDate.getDate()) {
@@ -195,15 +192,12 @@ form.addEventListener('submit', e => {
         } else {
             ageMonths = currentDate.getMonth() - birthDate.getMonth();
         }
-        console.log('Birthday occurred this year');
     }
     
     if (currentDate.getDate() < birthDate.getDate()) { // day not yet occurred this month
         let previousMonthDays;
-        console.log('Day not yet occurred this month');
         if (isLeapYear(currentDate.getFullYear()) && currentDate.getMonth() === 2) { // current February in leap year
             previousMonthDays = 29;
-            console.log('February in leap year');
         } else {
             previousMonthDays = daysInMonths[currentDate.getMonth()-1] || 31;
         }
@@ -216,23 +210,9 @@ form.addEventListener('submit', e => {
     monthsNum.textContent = ageMonths;
     daysNum.textContent = ageDays;
 
-    if (ageYears == 1) {
-      dateYearsElement.textContent = "year";
-    } else {
-      dateYearsElement.textContent = "years";
-    }
-
-    if (ageMonths == 1) {
-      dateMonthsElement.textContent = "month";
-    } else {
-      dateMonthsElement.textContent = "months";
-    }
-
-    if (ageDays == 1) {
-      dateDaysElement.textContent = "day";
-    } else {
-      dateDaysElement.textContent = "days";
-    }
+    dateYearsElement.textContent = `year${ageYears !== 1 ? 's' : ''}`;
+    dateMonthsElement.textContent = `month${ageMonths !== 1 ? 's' : ''}`;
+    dateDaysElement.textContent = `day${ageDays !== 1 ? 's' : ''}`;
 
     if(hasValidError) {
       toDefaultValues();
@@ -241,7 +221,5 @@ form.addEventListener('submit', e => {
         group.style.gap = '0.875rem';
       });
     }
-
-    console.log(`Day: ${day}, Month: ${month}, Year: ${year}`);
     
 });

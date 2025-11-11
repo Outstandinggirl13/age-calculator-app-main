@@ -20,24 +20,24 @@
         <div class="form__group">
           <div class="form__item">
             <label for="day-input" class="form__label">Day</label>
-            <input type="text" id="day-input" class="form__input" placeholder="DD" maxlength="2" required>
-            <p class="form__required-err">This field is required</p>
-            <p class="form__valid-err form__valid-day-err">Must be a valid day</p>
-            <p class="form__time-err form__future-day-err">Must be in the past</p>
+            <input type="text" id="day-input" class="form__input" placeholder="DD" maxlength="2" required aria-describedby="form__required-err form__valid-day-err form__future-day-err">
+            <p class="form__required-err" aria-live="assertive">This field is required</p>
+            <p class="form__valid-err form__valid-day-err" aria-live="assertive">Must be a valid day</p>
+            <p class="form__time-err form__future-day-err" aria-live="assertive">Must be in the past</p>
           </div>
           <div class="form__item">
             <label for="month-input" class="form__label">Month</label>
-            <input type="text" id="month-input" class="form__input" placeholder="MM" maxlength="2" required>
-            <p class="form__required-err">This field is required</p>
-            <p class="form__valid-err form__valid-month-err">Must be a valid month</p>
-            <p class="form__time-err form__future-month-err">Must be in the past</p>
+            <input type="text" id="month-input" class="form__input" placeholder="MM" maxlength="2" required aria-describedby="form__required-err form__valid-month-err form__future-month-err">
+            <p class="form__required-err" aria-live="assertive">This field is required</p>
+            <p class="form__valid-err form__valid-month-err" aria-live="assertive">Must be a valid month</p>
+            <p class="form__time-err form__future-month-err" aria-live="assertive">Must be in the past</p>
           </div>
           <div class="form__item">
             <label for="year-input" class="form__label">Year</label>
-            <input type="text" id="year-input" class="form__input" placeholder="YYYY" maxlength="4" required>
-            <p class="form__required-err">This field is required</p>
-            <p class="form__valid-err form__valid-year-err">Must be a valid year</p>
-            <p class="form__time-err form__future-year-err">Must be in the past</p>
+            <input type="text" id="year-input" class="form__input" placeholder="YYYY" maxlength="4" required aria-describedby="form__required-err form__valid-year-err form__future-year-err">
+            <p class="form__required-err" aria-live="assertive">This field is required</p>
+            <p class="form__valid-err form__valid-year-err" aria-live="assertive">Must be a valid year</p>
+            <p class="form__time-err form__future-year-err" aria-live="assertive">Must be in the past</p>
           </div>
         </div>
         <div class="form__btn-wrapper">
