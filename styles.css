@@ -192,11 +192,12 @@ body {
     outline: none;
 }
 
+
 .form__input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px white inset !important;
     -webkit-text-fill-color: black !important;
-    transition: background-color 9999s ease-in-out 0s; /* prevent flash */
-  }
+    transition: background-color 9999s ease-in-out 0s;
+}
 
 .form__required-err,
 .form__valid-err,

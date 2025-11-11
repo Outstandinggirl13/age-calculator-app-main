@@ -1,3 +1,7 @@
+/* ===========================
+       QUERY SELECTORS
+   =========================== */
+
 const form = document.querySelector('.form');
 const inputs = form.querySelectorAll('.form__input');
 const labels = form.querySelectorAll('.form__label');
